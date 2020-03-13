@@ -1,6 +1,10 @@
 #ifndef HOLBERTON_H
 #define HOLBERTON_H
 
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 int _strlen(char *str);
 void *_calloc(char c, unsigned int n);
 /* atoi */ 
