@@ -58,7 +58,7 @@ int get_width(char **fmt)
 
 	while (**fmt)
 	{
-		if (**fmt >= '0' || **fmt <= '9')
+		if (**fmt >= '0' && **fmt <= '9')
 		{
 			width *= 10;
 			width += **fmt - 48;
@@ -68,4 +68,53 @@ int get_width(char **fmt)
 			break;
 	}
 	return (width);
+}
+
+/**
+ * get_len - get length formatting
+ * Description: Gets the length specifier from the formatting string. Will move
+ *              the pointer to the string.
+ * @fmt: Pointer to formatting string. Give at the position the function
+ *      should start looking from.
+ * Return: Length character, or n if not present.
+ */
+
+char get_len(char **fmt)
+{
+	char length;
+
+	if (**fmt == 'l' || **fmt == 'h')
+		length = *(*fmt)++;    /* Save value and move pointer along */
+	else
+		length = 'n';
+	return (length);
+}
+
+/**
+ * get_type - get type specifier
+ * Description: Gets the type specifier from the formatting string. Will move
+ *              the pointer to the string.
+ * @fmt: Pointer to formatting string. Give at the position the function
+ *      should start looking from.
+ * Return: Type character, or n if not present.
+ */
+
+char get_type(char **fmt)
+{
+	if (**fmt == 'i' ||
+	    **fmt == 'd' ||
+	    **fmt == 'o' ||
+	    **fmt == 'x' ||
+	    **fmt == 'x' ||
+	    **fmt == 'X' ||
+	    **fmt == 'b' ||
+	    **fmt == 's' ||
+	    **fmt == 'S' ||
+	    **fmt == 'r' ||
+	    **fmt == 'R' ||
+	    **fmt == 'c' ||
+	    **fmt == 'p')
+		return (**fmt++);
+	else
+		return ('\0');
 }
