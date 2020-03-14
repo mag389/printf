@@ -8,8 +8,8 @@
  * @fmt: Formatting string to look through. Give a pointer to the index
  *       the function should start from.
  * Return: Pointer to string of flags present in the formatting string.
-           The character will be present if the flag is present, or 'n'
-           if the flag is not found. Flags are ordered as above.
+ *         The character will be present if the flag is present, or 'n'
+ *         if the flag is not found. Flags are ordered as above.
 */
 
 char *get_flags(char **fmt)
@@ -25,7 +25,7 @@ char *get_flags(char **fmt)
 
 	while (*(++(*fmt)))
 	{
-		for (found = 0,index = 0; index < 5; index++)
+		for (found = 0, index = 0; index < 5; index++)
 		{
 			if (**fmt == *(flag_list + index))
 			{
@@ -34,11 +34,38 @@ char *get_flags(char **fmt)
 			}
 		}
 		if (found == 0 && index < 6)
-			return(flags);
+			return (flags);
 	}
 	if (*(flags + 2) == '+')
 		*(flags + 4) = 'n';
 	if (*(flags + 4) == ' ' || *(flags + 3) == '-')
 		*(flags + 1) = 'n';
 	return (flags);
+}
+
+/**
+ * get_width - get width formatting
+ * Description: Searches for a specified width that would follow the
+ *              flags if present. Will move the pointer passed to it.
+ * @fmt: Pointer to formatting string. Give at the position the function
+ *       should start looking from.
+ * Return: The specified width in the formatting string. 0 if no width found.
+ */
+
+int get_width(char **fmt)
+{
+	int width = 0;
+
+	while (**fmt)
+	{
+		if (**fmt >= '0' || **fmt <= '9')
+		{
+			width *= 10;
+			width += **fmt - 48;
+			(*fmt)++;
+		}
+		else
+			break;
+	}
+	return (width);
 }
