@@ -19,7 +19,7 @@ int _strlen(char *);
 char *_strdup(char *);
 void *_calloc(unsigned int nmemb, unsigned int size, char c);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-/* space for a fifth function */
+char *_ctrdup(const char *);
 
 /* char *(*num_func(char type, char len))(int {the va_arg num), char len);*/
 /* char *(*str_func(char))(char *{the va arg string}) */
