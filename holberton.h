@@ -18,7 +18,7 @@ char get_type(char **fmt);
 int _strlen(char *);
 char *_strdup(char *);
 void *_calloc(unsigned int nmemb, unsigned int size, char c);
-/* space for _realloc */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 /* space for a fifth function */
 
 /* char *(*num_func(char type, char len))(int {the va_arg num), char len);*/
@@ -28,8 +28,9 @@ void *_calloc(unsigned int nmemb, unsigned int size, char c);
  * char *apply_width(char *str);
  * char *apply_flags(char *str);
  */
+
+void *_itoa(long int number, char length);
 /*
-itoa(int i)
 itod
 itou..o..x..X..b
 */

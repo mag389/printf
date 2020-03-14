@@ -4,6 +4,7 @@ long int mypow(int a, int b);
 
 /**
 *_itoa - takes an integer and returns it as a string
+*Return: char pointer containing the sring number
 *@number:the number taken in
 *@length: whether the number is long or short int
 */
@@ -11,13 +12,11 @@ long int mypow(int a, int b);
 void *_itoa(long int number, char length)
 {
 	int i = 0, digits, sign = 1;
-	char *array;
-	unsigned int memb = 22, size = 1;
+	char *array, *newarray;
 
-	array =  _calloc(memb, size, '\0');
+	array =  _calloc(22, 1, 'n');
 	if (array == NULL)
 		return (NULL);
-/*	printf("%s\n", array);*/
 	if (number < 0)
 	{
 		array[0] = '-';
@@ -26,22 +25,20 @@ void *_itoa(long int number, char length)
 	}
 	for (digits = 1; digits < 19; digits++)
 	{
-/*		printf("%i\n", digits);*/
 		if (number / mypow(10, digits) == 0)
 			break;
 	}
-/*	printf("passed the first lopo\n");*/
-/*	printf("sign is %i \n",sign);*/
 	for (digits--; digits >= 0; digits--)
 	{
-/*		printf("%c : %i --\n", '0' + (int)(number / mypow(10, digits) % 10 * sign), i);*/
 		array[i] = '0' + (int)(number / mypow(10, digits) % 10 * sign);
-/*		printf("%c\n", 'p');*/
 		i++;
 	}
 	array[i] = '\0';
-	return ((char *)array);
-	
+	newarray = _calloc(i + 1, 1, '\0');
+	for (; i >= 0; i--)
+		newarray[i] = array[i];
+	free(array);
+	return ((char *)newarray);
 }
 
 /**
