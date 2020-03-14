@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int _printf(const char *format, ...);
 /* atoi */
 
 /* Functions inside get_functions.c */
