@@ -8,7 +8,7 @@
 int _strlen(char *str);
 void *_calloc(unsigned int nmemb, unsigned int size, char c);
 /* atoi */
-char *get_flags(char *fmt);
+char *get_flags(char **fmt);
 int get_width(char *fmt);
 int get_prec(char *fmt);
 char get_len(char *fmt);

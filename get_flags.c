@@ -12,7 +12,7 @@
            if the flag is not found. Flags are ordered as above.
 */
 
-char *get_flags(char *fmt)
+char *get_flags(char **fmt)
 {
 	char *flags;
 	char *flag_list = "#0+- ";
@@ -23,17 +23,17 @@ char *get_flags(char *fmt)
 		return (NULL);
 	*(flags + 5) = 0;            /* Replace last byte with null */
 
-	while (*fmt++)
+	while (*(++(*fmt)))
 	{
 		for (found = 0,index = 0; index < 5; index++)
 		{
-			if (*fmt == *(flag_list + index))
+			if (**fmt == *(flag_list + index))
 			{
 				*(flags + index) = *(flag_list + index);
 				found = 1;
 			}
 		}
-		if (found == 0 && index < 5)
+		if (found == 0 && index < 6)
 			return(flags);
 	}
 	if (*(flags + 2) == '+')
