@@ -5,14 +5,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int _strlen(char *str);
-void *_calloc(unsigned int nmemb, unsigned int size, char c);
 /* atoi */
-char *get_flags(char *fmt);
-int get_width(char *fmt);
-int get_prec(char *fmt);
-char get_len(char *fmt);
-char get_type(char *fmt);
+
+/* Functions inside get_functions.c */
+char *get_flags(char **fmt);
+int get_width(char **fmt);
+int get_prec(char **fmt);
+char get_len(char **fmt);
+char get_type(char **fmt);
+
+/* Functions inside string_functions.c */
+int _strlen(char *);
+char *_strdup(char *);
+void *_calloc(unsigned int nmemb, unsigned int size, char c);
+/* space for _realloc */
+/* space for a fifth function */
 
 /* char *(*num_func(char type, char len))(int {the va_arg num), char len);*/
 /* char *(*str_func(char))(char *{the va arg string}) */
