@@ -101,6 +101,8 @@ char get_len(char **fmt)
 
 char get_type(char **fmt)
 {
+	char type;
+
 	if (**fmt == 'i' ||
 	    **fmt == 'd' ||
 	    **fmt == 'o' ||
@@ -114,7 +116,46 @@ char get_type(char **fmt)
 	    **fmt == 'R' ||
 	    **fmt == 'c' ||
 	    **fmt == 'p')
-		return (**fmt++);
+	{
+		type = **fmt;
+		(*fmt)++;
+		return (type);
+	}
 	else
 		return ('\0');
+}
+
+/**
+ * get_prec - get precision formatting
+ * Description:
+ * @fmt: Pointer to formatting string. Give at the position the function
+ *       should start looking from.
+ * @args: The variadic list of arguments. Might be needed in case precision is
+ *        specified with a '*'.
+ * Return: Specified precision, or 0 if not found.
+ */
+int get_prec(char **fmt, va_list args)
+{
+	int prec = 0;
+	if (**fmt == '.')
+	{
+		(*fmt)++;
+		while(**fmt)
+		{
+			if (**fmt >= '0' && **fmt <= '9')
+			{
+				prec *= 10;
+				prec += **fmt - 48;
+				(*fmt)++;
+			}
+			else
+				break;
+		}
+	}
+	if (**fmt == '*')
+	{
+		(*fmt)++;
+		return (va_arg(args, int));
+	}
+	return (prec);
 }
