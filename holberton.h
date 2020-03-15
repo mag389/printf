@@ -24,7 +24,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_cstrdup(const char *);
 
 /* Functions inside buffer_functions.c */
-void save_to_buffer(char *buffer, char *f_text);
+int save_to_buffer(char **buffer, char *f_text);
 
 /* char *(*num_func(char type, char len))(int {the va_arg num), char len);*/
 /* char *(*str_func(char))(char *{the va arg string}) */
