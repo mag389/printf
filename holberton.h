@@ -28,6 +28,19 @@ int save_to_buffer(char **buffer, char *f_text);
 char *extend_buffer(char *buffer, int extension);
 char *init_buffer(void);
 
+
+/* Functions inside apply_functions.c */
+char *apply_prec(char *text, int prec);
+char *apply_width(char *text, int width);
+char *apply_flags(char *text, char *flags, char type);
+int match(char c, char *str);
+
+/* Functions inside apply_flag_functions.c */
+char *apply_hash(char *text, char type);
+char *apply_zero(char *text);
+char *apply_sign(char *text);
+char *apply_left_align(char *text);
+char *apply_space(char *text);
 /* char *(*num_func(char type, char len))(int {the va_arg num), char len);*/
 /* char *(*str_func(char))(char *{the va arg string}) */
 /*
