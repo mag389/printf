@@ -12,13 +12,18 @@ void *(*func(char t))(char len, va_list list)
 	func_t fns[] = {
 		{'i', _itoa},
 		{'b', _itoba},
+		{'d', _itoa},
+		{'s', _stoa},
+		{'c', _ctoa},
+		{'r', _rtoa},
+		{'R', _bigrtoa},
 		{0, NULL}
-/* 		todo: sSrRc, duoxX*/
+/* 		todo: S, uoxX*/
 	};
 	int i;
 
 	i = 0;
-	while (i < 2)
+	while (i < 7)
 	{
 		if (t == ((fns + i)->t))
 			return ((fns + i)->f);

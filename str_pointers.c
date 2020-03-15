@@ -11,7 +11,7 @@ void *_stoa(char len, va_list list)
 	char *str;
 
 	(void)len;
-	str = _strdup(va_arg(list char *));
+	str = _strdup(va_arg(list, char *));
 	if (str == NULL)
 		exit(2);
 	return (str);
@@ -48,7 +48,7 @@ void *_rtoa(char len, va_list list)
 */
 void *_bigrtoa(char len, va_list list)
 {
-	char *str, temp;
+	char *str;
 	int i, j;
 	char *low = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	char *high = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
@@ -63,7 +63,7 @@ void *_bigrtoa(char len, va_list list)
 		{
 			if (str[i] == low[j])
 			{
-				a[i] = high[j];
+				str[i] = high[j];
 				break;
 			}
 		}
@@ -101,9 +101,10 @@ void *_ctoa(char len, va_list list)
 {
 	char *str;
 
+	(void)len;
 	str = _calloc(2,1,'\0');
 	if (str == NULL)
 		exit(3);
-	str[0] = va_arg(list, char);
+	str[0] = va_arg(list, int);
 	return (str);
 }

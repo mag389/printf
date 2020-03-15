@@ -50,7 +50,12 @@ int main(void)
 	printf("lets see if our printf works:\n");
 	_printf("hello");
 	_printf("hi%%");
-	_printf("hi%i",7);
+	_printf("hi %i %i",7, 1234);
 	_printf("hey%i",i);
+	_printf("binary: %b",1234);
+	_printf("let's try a string: %s", "poop");
+	_printf("michael in reverse: %r", "michael");
+	_printf("kevin in rot13 is xriva : %R", "kevin");
+	_printf("just a character j == %c", 'j');
 	return (0);
 }

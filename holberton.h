@@ -44,6 +44,10 @@ typedef struct functions
 
 void *_itoa(char length, va_list list);
 void *_itoba(char length, va_list list);
+void *_stoa(char length, va_list list);
+void *_rtoa(char length, va_list list);
+void *_bigrtoa(char length, va_list list);
+void *_ctoa(char length, va_list list);
 
 void *(*func(char type))(char length, va_list list);
 /*
