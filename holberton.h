@@ -12,7 +12,7 @@ int _printf(const char *format, ...);
 /* Functions inside get_functions.c */
 char *get_flags(char **fmt);
 int get_width(char **fmt);
-int get_prec(char **fmt);
+int get_prec(char **fmt, va_list args);
 char get_len(char **fmt);
 char get_type(char **fmt);
 
