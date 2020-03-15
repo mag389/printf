@@ -7,8 +7,12 @@
  * @buffer: Pointer to the buffer. Will be moved.
  */
 
-void save_to_buffer(char **buffer, char *f_text)
+void save_to_buffer(char *buffer, char *f_text)
 {
+	int i = 0;
 	while (*f_text)
-		**(buffer++) = *(f_text++);
+	{
+		buffer[i] = *(f_text++);
+		i++;
+	}
 }
