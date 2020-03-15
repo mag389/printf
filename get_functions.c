@@ -106,7 +106,7 @@ char get_type(char **fmt)
 	if (**fmt == 'i' ||
 	    **fmt == 'd' ||
 	    **fmt == 'o' ||
-	    **fmt == 'x' ||
+	    **fmt == 'u' ||
 	    **fmt == 'x' ||
 	    **fmt == 'X' ||
 	    **fmt == 'b' ||
