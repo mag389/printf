@@ -74,7 +74,7 @@ int _printf(const char *format, ...)
 	buffer[index] = 0;
 	finlen = _strlen(buffer_begin);
 	printf("length is %i\n",finlen);
-	write(1, &buffer_begin, index);
+	write(1, buffer, index);
 	printf("i just tried to write\nbuffer begin - index is %s\n",buffer);
 	printf("printing just buffer: %s\n", (buffer));
 	printf("and buffer begin: %s\n",buffer_begin - 2);
