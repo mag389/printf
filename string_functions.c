@@ -75,3 +75,33 @@ int _strlen(char *s)
 
 	return (strlen);
 }
+/**
+ * _cstrdup - string duplicate
+ * Description: Duplicates a string
+ * @str: Source string
+ * Return: Pointer to newly created string
+ */
+
+char *_cstrdup(const char *str)
+{
+        int index, size;
+        char *dst;
+
+        if (str == NULL)
+                return (NULL);
+
+        size = 0;
+        while (*(str + size))
+                size++;
+
+        dst = malloc(size + 1);
+        if (dst == NULL)
+                return (NULL);
+
+        for (index = 0; index < size; index++)
+                *(dst + index) = *(str + index);
+
+        *(dst + index) = '\0';
+
+        return (dst);
+}

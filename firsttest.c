@@ -4,9 +4,9 @@
 
 int main(void)
 {
-/*	long int number;
-	int i;
-	char *ary;
+/*	long int number;*/
+	unsigned int i = 1234;
+/*	char *ary;
 */
 /*	printf("%li\n",12345);wont compile type error*/
 /*        printf("%hi\n",123456789);*/
@@ -51,5 +51,6 @@ int main(void)
 	_printf("hello");
 	_printf("hi%%");
 	_printf("hi%i",7);
+	_printf("hey%i",i);
 	return (0);
 }

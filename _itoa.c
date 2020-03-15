@@ -14,6 +14,7 @@ void *_itoa(long int number, char length)
 	int i = 0, digits, sign = 1;
 	char *array, *newarray;
 
+	(void) length;
 	array =  _calloc(22, 1, 'n');
 	if (array == NULL)
 		return (NULL);
