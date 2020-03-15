@@ -37,7 +37,6 @@ int _printf(const char *format, ...)
 				buffer_length += save_to_buffer(&buffer, "%");
 				printf("trying a print iside the if %s\n", buffer);
 				fmt_cpy += 2;
-				/* index += 1; */
 			}
 			else
 			{
@@ -63,7 +62,6 @@ int _printf(const char *format, ...)
 */				buffer_length += save_to_buffer(&buffer, argtext);
 				fmt_cpy++;
 				printf("the arglength in: %i\n",_strlen(argtext));
-				/* index += _strlen(argtext); */
 			}
 		}
 		else
@@ -71,12 +69,8 @@ int _printf(const char *format, ...)
 			chara[0] = *fmt_cpy;
 			buffer_length += save_to_buffer(&buffer, chara);
 			fmt_cpy++;
-			/* index += 1; */
 		}
 	}
-	/* printf("index is: %i\n", index); */
-	/* buffer[index] = 0; */
-	/* finlen = _strlen(buffer_begin); */
 	printf("length is %i\n______",buffer_length);
 	write(1, buffer, buffer_length);
 	printf("_____\ni just tried to write\nbuffer begin - index is %s\n",buffer);
