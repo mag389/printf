@@ -9,11 +9,13 @@ long int mypow(int a, int b);
 *@length: whether the number is long or short int
 */
 
-void *_itoba(long int number, char length)
+void *_itoba(char length, va_list list)
 {
-	int i = 0, digits, sign = 1, numcpy = number, signbuffer = 0;
+	long int number = va_arg(list, long int), numcpy = number;
+	int i = 0, digits, sign = 1, signbuffer = 0;
 	char *array, *newarray;
 
+	
 	(void) length;
 	array =  _calloc(50, 1, 'n');
 	if (array == NULL)

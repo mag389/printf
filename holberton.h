@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int _printf(const char *format, ...);
 /* atoi */
@@ -33,8 +34,16 @@ void save_to_buffer(char *buffer, char *f_text);
  * char *apply_flags(char *str);
  */
 
-void *_itoa(long int number, char length);
-void *_itoba(long int number, char length);
+typedef struct functions
+{
+	char t;
+	void* (*f)(char length, va_list list);
+} func_t;
+
+void *_itoa(char length, va_list list);
+void *_itoba(char length, va_list list);
+
+void *(*func(char type))(char length, va_list list);
 /*
 itod
 itou..o..x..X..b

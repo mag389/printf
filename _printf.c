@@ -13,6 +13,7 @@ int _printf(const char *format, ...)
 	char *buffer, *buffer_begin, *argtext, *flags, *chara;
 	char type, len;
 	int finlen, width, index = 0;/*precision*/
+	void *(*funct)(char, va_list);
 
 	fmt_cpy = _cstrdup(format);
 	printf("----------------------\n%s\n",fmt_cpy);
@@ -49,7 +50,9 @@ int _printf(const char *format, ...)
 				(void)flags;
 				(void)type;
 				(void)len;
-				argtext = _itoa('l', args);
+				printf("the type is: %c\n",type);
+				funct = (*func)(type);
+				argtext = funct('l', args);
 				printf("the argtext is: %s\n",argtext);
 /*				if type is string call string f'n pointer
 				if type is number call number f'n pointer
