@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 {
 	char *fmt_cpy;
 	va_list args, args_cpy;
-	char *buffer, *buffer_begin, *argtext, *flags, *chara;
+	char *buffer, *argtext, *flags, *chara;
 	char type, len;
 	int width;/*precision*/
 	int buffer_length = 0;
@@ -22,7 +22,6 @@ int _printf(const char *format, ...)
 	chara = _calloc(2,1,'\0');
 	if (buffer == NULL || chara == NULL)
 		exit(1);
-	buffer_begin = &(buffer[0]);
 	va_start(args, format);
 	va_copy(args_cpy,args);
 	printf("----------------------------------------\n");
@@ -42,17 +41,16 @@ int _printf(const char *format, ...)
 			{
 				printf("the char is: %c\n", *fmt_cpy);
 				flags = get_flags(&fmt_cpy);
-				get_width(&fmt_cpy);
-/*				get_precision
-				len = get_len(&fmt_cpy);*/
+				get_width(&fmt_cpy);/*
+				get_precision*/
+				len = get_len(&fmt_cpy);
 				type = get_type(&fmt_cpy);
 				(void)width;
 				(void)flags;
 				(void)type;
-				(void)len;
 				printf("the type is: %c\n",type);
 				funct = (*func)(type);
-				argtext = funct('l', args);
+				argtext = funct(len, args);
 				printf("the argtext is: %s\n",argtext);
 /*				if type is string call string f'n pointer
 				if type is number call number f'n pointer
@@ -71,9 +69,9 @@ int _printf(const char *format, ...)
 			fmt_cpy++;
 		}
 	}
-	printf("length is %i\n______",buffer_length);
+	printf("length is %i should be %i \n_____\n",buffer_length, _strlen(buffer));
 	write(1, buffer, buffer_length);
-	printf("_____\ni just tried to write\nbuffer begin - index is %s\n",buffer);
+	printf("\ni just tried to write\nbuffer begin - index is %s\n",buffer);
 	printf("printing just buffer: %s\n", (buffer));
 	return(buffer_length);
 /*	write buffer to output

@@ -57,5 +57,7 @@ int main(void)
 	_printf("michael in reverse: %r", "michael");
 	_printf("kevin in rot13 is xriva : %R", "kevin");
 	_printf("just a character j == %c", 'j');
+	_printf("an unsigned int %u \n",5000000000);
+	printf("the unsigned int %u \n",(unsigned int)5000000000);
 	return (0);
 }
