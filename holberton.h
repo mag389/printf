@@ -25,6 +25,8 @@ char *_cstrdup(const char *);
 
 /* Functions inside buffer_functions.c */
 int save_to_buffer(char **buffer, char *f_text);
+char *extend_buffer(char *buffer, int extension);
+char *init_buffer(void);
 
 /* char *(*num_func(char type, char len))(int {the va_arg num), char len);*/
 /* char *(*str_func(char))(char *{the va arg string}) */
