@@ -9,10 +9,11 @@ long int mypow(int a, int b);
 *@length: whether the number is long or short int
 */
 
-void *_itoa(long int number, char length)
+void *_itoa(char length, va_list list)
 {
 	int i = 0, digits, sign = 1;
 	char *array, *newarray;
+	long int number = va_arg(list, long int);
 
 	(void) length;
 	array =  _calloc(22, 1, 'n');
