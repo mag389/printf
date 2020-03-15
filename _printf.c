@@ -12,7 +12,8 @@ int _printf(const char *format, ...)
 	va_list args, args_cpy;
 	char *buffer, *buffer_begin, *argtext, *flags, *chara;
 	char type, len;
-	int finlen, width, index = 0;/*precision*/
+	int width;/*precision*/
+	int buffer_length = 0;
 	void *(*funct)(char, va_list);
 
 	fmt_cpy = _cstrdup(format);
@@ -33,10 +34,10 @@ int _printf(const char *format, ...)
 			if (*(fmt_cpy + 1) == '%')
 			{
 				printf("the char is: %c\n", *fmt_cpy);
-				save_to_buffer(&buffer[index], "%");
+				buffer_length += save_to_buffer(&buffer, "%");
 				printf("trying a print iside the if %s\n", buffer);
 				fmt_cpy += 2;
-				index += 1;
+				/* index += 1; */
 			}
 			else
 			{
@@ -58,30 +59,29 @@ int _printf(const char *format, ...)
 				if type is number call number f'n pointer
 				apply_width() and precision
 				apply_flags()
-	
-*/				save_to_buffer(&buffer[index], argtext);
+
+*/				buffer_length += save_to_buffer(&buffer, argtext);
 				fmt_cpy++;
 				printf("the arglength in: %i\n",_strlen(argtext));
-				index += _strlen(argtext);
+				/* index += _strlen(argtext); */
 			}
 		}
 		else
 		{
 			chara[0] = *fmt_cpy;
-			save_to_buffer(&buffer[index], chara);
+			buffer_length += save_to_buffer(&buffer, chara);
 			fmt_cpy++;
-			index += 1;
+			/* index += 1; */
 		}
 	}
-	printf("index is: %i\n", index);
-	buffer[index] = 0;
-	finlen = _strlen(buffer_begin);
-	printf("length is %i\n______",finlen);
-	write(1, buffer, index);
+	/* printf("index is: %i\n", index); */
+	/* buffer[index] = 0; */
+	/* finlen = _strlen(buffer_begin); */
+	printf("length is %i\n______",buffer_length);
+	write(1, buffer, buffer_length);
 	printf("_____\ni just tried to write\nbuffer begin - index is %s\n",buffer);
 	printf("printing just buffer: %s\n", (buffer));
-	printf("and buffer begin: %s\n",buffer_begin - 2);
-	return(finlen);	
+	return(buffer_length);
 /*	write buffer to output
 	free(everything allocated)
 */
