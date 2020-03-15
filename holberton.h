@@ -48,6 +48,12 @@ char *apply_space(char *text);
  * char *apply_width(char *str);
  * char *apply_flags(char *str);
  */
+typedef struct formatting
+{
+	char *flags;
+	int with, prec;
+	char length, type;
+} form_t;
 
 typedef struct functions
 {
