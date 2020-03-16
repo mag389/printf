@@ -59,5 +59,7 @@ int main(void)
 	_printf("just a character j == %c", 'j');
 	_printf("an unsigned int %u \n",5000000000);
 	printf("the unsigned int %u \n",(unsigned int)5000000000);
+	_printf("formatted string: %s", "holberton\nSchool");
+	_printf("formatted string: %S", "holberton\nSchool");
 	return (0);
 }

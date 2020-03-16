@@ -68,6 +68,7 @@ void *_rtoa(char length, va_list list);
 void *_bigrtoa(char length, va_list list);
 void *_ctoa(char length, va_list list);
 void *_utoa(char length, va_list list);
+void *_bigstoa(char length, va_list list);
 /*void *_otoa(char length, va_list list);*/
 /*void *_xtoa(char length, va_list list);*/
 /*void *_Xtoa(char length, va_list list);*/
