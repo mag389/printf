@@ -13,9 +13,14 @@ void *_itoa(char length, va_list list)
 {
 	int i = 0, digits, sign = 1;
 	char *array, *newarray;
-	long int number = va_arg(list, long int);
+	long int number;
 
-	(void) length;
+	if (length == 'l')
+		number = va_arg(list, long int);
+	else if (length == 'h')
+		number = (short int)va_arg(list, int);
+	else
+		number = va_arg(list, int);
 	array =  _calloc(22, 1, 'n');
 	if (array == NULL)
 		return (NULL);
@@ -73,14 +78,14 @@ void *_utoa(char length, va_list list)
 	}
 	for (digits--; digits >= 0; digits--)
 	{
-		printf("%s\n",array);
+		printf("%s\n", array);
 		array[digits] = '0' + number % 10;
 		number /= 10;
 		i++;
 	}
 	array[i] = '\0';
 	newarray = _calloc(i + 1, 1, '\0');
-	if(newarray == NULL)
+	if (newarray == NULL)
 		exit(3);
 	for (; i >= 0; i--)
 		newarray[i] = array[i];
