@@ -12,7 +12,7 @@ long int mypow(int a, int b);
 void *_itoba(char length, va_list list)
 {
 	long int number = va_arg(list, long int), numcpy = number;
-	int i = 0, digits, sign = 1, signbuffer = 0;
+	int i = 0, digits, sign = 1;
 	char *array, *newarray;
 
 	
@@ -21,13 +21,6 @@ void *_itoba(char length, va_list list)
 	if (array == NULL)
 		return (NULL);
 /*	printf("past calloc");*/
-/*	if (number < 0)
-	{
-		array[0] = '-';
-		sign = -1;
-		signbuffer++;
-	}*/
-/*	printf("past neg check\n");*/
 	for (digits = 1; digits < 50; digits++)
 	{
 		numcpy = numcpy / 2;
@@ -37,17 +30,17 @@ void *_itoba(char length, va_list list)
 /*	printf("got digits: %i\n",digits);*/
 	for (digits--; digits >= 0; digits--)
 	{
-		array[digits + signbuffer] = '0' + number % 2 * sign;
+		array[digits] = '0' + number % 2 * sign;
 		number /= 2;
 		i++;
-/*		printf("i:%i 1--array to now %s \n", i, array);*/
+		printf("i:%i 1--array to now %s \n", i, array);
 	}
-	array[i + signbuffer] = '\0';
-	i += signbuffer;
-/*	printf("%s \n",array);*/
-	newarray = _calloc(i + 1 + signbuffer, 1, '\0');
+	array[i] = '\0';
+	printf("%s \n",array);
+	newarray = _calloc(i + 1, 1, '\0');
 	for (; i >= 0; i--)
 		newarray[i] = array[i];
+	printf("%s\n",newarray);
 	free(array);
 	return ((char *)newarray);
 }

@@ -50,7 +50,7 @@ int main(void)
 	printf("lets see if our printf works:\n");
 	_printf("hello");
 	_printf("hi%%");
-	_printf("hi %i %i",7, 1234);
+	_printf("hi %i %i ",7, 1234);
 	_printf("hey%i",i);
 	_printf("binary: %b",1234);
 	_printf("let's try a string: %s", "poop");

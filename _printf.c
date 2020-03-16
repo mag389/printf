@@ -59,7 +59,7 @@ int _printf(const char *format, ...)
 
 */				buffer_length += save_to_buffer(&buffer, argtext);
 				free(argtext);
-				fmt_cpy++;
+/*				fmt_cpy++;*/
 				printf("the arglength in: %i\n",_strlen(argtext));
 			}
 		}
