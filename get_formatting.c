@@ -19,7 +19,7 @@ form_t *get_formatting(char **fmt, va_list args)
 
 	formats = malloc(sizeof(form_t));
 	if (!formats)
-		exit (1000);
+		exit(1000);
 
 	formats->flags = get_flags(fmt);
 	formats->width = get_width(fmt);

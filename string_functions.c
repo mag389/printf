@@ -84,24 +84,24 @@ int _strlen(char *s)
 
 char *_cstrdup(const char *str)
 {
-        int index, size;
-        char *dst;
+	int index, size;
+	char *dst;
 
-        if (str == NULL)
-                return (NULL);
+	if (str == NULL)
+		return (NULL);
 
-        size = 0;
-        while (*(str + size))
-                size++;
+	size = 0;
+	while (*(str + size))
+		size++;
 
-        dst = malloc(size + 1);
-        if (dst == NULL)
-                return (NULL);
+	dst = malloc(size + 1);
+	if (dst == NULL)
+		return (NULL);
 
-        for (index = 0; index < size; index++)
-                *(dst + index) = *(str + index);
+	for (index = 0; index < size; index++)
+		*(dst + index) = *(str + index);
 
-        *(dst + index) = '\0';
+	*(dst + index) = '\0';
 
-        return (dst);
+	return (dst);
 }

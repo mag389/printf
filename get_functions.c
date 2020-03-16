@@ -137,10 +137,11 @@ char get_type(char **fmt)
 int get_prec(char **fmt, va_list args)
 {
 	int prec = 0;
+
 	if (**fmt == '.')
 	{
 		(*fmt)++;
-		while(**fmt)
+		while (**fmt)
 		{
 			if (**fmt >= '0' && **fmt <= '9')
 			{
