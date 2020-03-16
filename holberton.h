@@ -7,7 +7,6 @@
 #include <string.h>
 
 int _printf(const char *format, ...);
-/* atoi */
 
 /* Functions inside get_functions.c */
 char *get_flags(char **fmt);
@@ -41,8 +40,6 @@ char *apply_zero(char *text);
 char *apply_sign(char *text, char *flags);
 char *apply_left_align(char *text);
 
-/* char *(*num_func(char type, char len))(int {the va_arg num), char len);*/
-/* char *(*str_func(char))(char *{the va arg string}) */
 /*
  * char *apply_precision(char *str);
  * char *apply_width(char *str);
@@ -69,22 +66,12 @@ void *_bigrtoa(char length, va_list list);
 void *_ctoa(char length, va_list list);
 void *_utoa(char length, va_list list);
 void *_bigstoa(char length, va_list list);
-/*void *_otoa(char length, va_list list);*/
-/*void *_xtoa(char length, va_list list);*/
-/*void *_Xtoa(char length, va_list list);*/
+void *_otoa(char length, va_list list);
+void *_xtoa(char length, va_list list);
+void *_Xtoa(char length, va_list list);
+void *_ptoa(char length, va_list list);
 
 void *(*func(char type))(char length, va_list list);
-/*
-itod
-itou..o..x..X..b
-*/
-/*
-stoa()
-Stoa()
-rtoa()
-Rtoa()
-ctoa()
-*/
 
 
 #endif

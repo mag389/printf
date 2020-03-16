@@ -19,13 +19,16 @@ void *(*func(char t))(char len, va_list list)
 		{'R', _bigrtoa},
 		{'u', _utoa},
 		{'S', _bigstoa},
+		{'x', _xtoa},
+		{'X', _Xtoa},
+		{'o', _otoa},
+		{'p', _ptoa},
 		{0, NULL}
-/* 		todo: S, uoxX*/
 	};
 	int i;
 
 	i = 0;
-	while (i < 9)
+	while (i < 13)
 	{
 		if (t == ((fns + i)->t))
 			return ((fns + i)->f);

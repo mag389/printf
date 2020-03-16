@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <limits.h>
 #include "holberton.h"
-
+/* how i compiled (watch out for extra line break in the middle):
+gcc -Wall -Werror -pedantic -Wextra _print* get_* _itoa* string_* 
+_itoba.c _reall* buffer_functions.c agrtostr.c first* str_* -g -o b */
 int main(void)
 {
 /*	long int number;*/
@@ -61,5 +63,8 @@ int main(void)
 	printf("the unsigned int %u \n",(unsigned int)5000000000);
 	_printf("formatted string: %s", "holberton\nSchool");
 	_printf("formatted string: %S", "holberton\nSchool");
+	_printf("a hex of 1234 is 4d2 or : %x\n", 1234);
+	_printf("hex can be big too %X\n", 1234);
+	_printf("1234 in octal is 2322 ==%o\n", 1234);
 	return (0);
 }

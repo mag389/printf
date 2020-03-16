@@ -92,7 +92,7 @@ void *_bigstoa(char len, va_list list)
 		exit(2);
 	for (i = 0; i < length; i++)
 	{
-		printf("newstring:%i %s\n", newlen, newstr);
+/*		printf("newstring:%i %s\n", newlen, newstr);*/
 		if (str[i] >= 32 && str[i] < 127)
 			newstr[newlen++] = str[i];
 		else
