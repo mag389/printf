@@ -23,7 +23,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_cstrdup(const char *);
 
 /* Functions inside buffer_functions.c */
-int save_to_buffer(char **buffer, char *f_text);
+void save_to_buffer(char **buffer, char *f_text, int *buffer_length);
 char *extend_buffer(char *buffer, int extension);
 char *init_buffer(void);
 

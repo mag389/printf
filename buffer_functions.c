@@ -1,5 +1,5 @@
 #include "holberton.h"
-
+#include <unistd.h>
 /**
  * extend_buffer - extend buffer
  * Description: Extends the allocated space of the buffer by reallocating
@@ -32,7 +32,7 @@ char *init_buffer(void)
 {
 	char *buffer;
 
-	buffer = _calloc(1, 1, '\0');
+	buffer = malloc(1024);
 	if (!buffer)
 		exit(1000);
 	return (buffer);
@@ -46,20 +46,14 @@ char *init_buffer(void)
  * @f_text: String of text to save to the buffer.
  * Return: The length of the string appended to the buffer.
  */
-int save_to_buffer(char **buffer, char *f_text)
+void save_to_buffer(char **buffer, char *f_text, int *buffer_index)
 {
-	int f_text_len, index, old_buffer_len;
+	int index;
 
-	old_buffer_len = _strlen(*buffer);
-	f_text_len = _strlen(f_text);
-
-	*buffer = extend_buffer(*buffer, f_text_len);
-	if (!buffer)
-		return (0);
-	for (index = 0; *(f_text + index); index++)
-		*(*(buffer) + old_buffer_len + index) = *(f_text + index);
-	*(*(buffer) + old_buffer_len + index) = '\0';
-
-/*	free(f_text);*/
-	return (f_text_len);
+	for (index = 0; *(f_text + index); index++, (*buffer_index)++)
+	{
+		if (*buffer_index % 1024 == 0)
+			write(1, *buffer, 1024);
+		*(*buffer + (*buffer_index % 1024)) = *(f_text + index);
+	}
 }

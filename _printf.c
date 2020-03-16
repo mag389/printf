@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 
 	fmt_cpy = _cstrdup(format);
 	printf("----------------------\n%s\n",fmt_cpy);
-	buffer = _calloc(1,1,0);
+	buffer = malloc(1024);
 	chara = _calloc(2,1,'\0');
 	if (buffer == NULL || chara == NULL)
 		exit(1);
@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 			if (*(fmt_cpy + 1) == '%')
 			{
 				printf("the char is: %c\n", *fmt_cpy);
-				buffer_length += save_to_buffer(&buffer, "%");
+				save_to_buffer(&buffer, "%", &buffer_length);
 				printf("trying a print iside the if %s\n", buffer);
 				fmt_cpy += 2;
 			}
@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
 				apply_width() and precision
 				apply_flags()
 
-*/				buffer_length += save_to_buffer(&buffer, argtext);
+*/			        save_to_buffer(&buffer, argtext, &buffer_length);
 				free(argtext);
 /*				fmt_cpy++;*/
 				printf("the arglength in: %i\n",_strlen(argtext));
@@ -68,13 +68,14 @@ int _printf(const char *format, ...)
 /*			printf("gets to chara (%s) part \n", chara);*/
 			chara[0] = *fmt_cpy;
 /*			printf("the chara is %s the buffer %s\n", chara, buffer);*/
-			buffer_length += save_to_buffer(&buffer, chara);
+			save_to_buffer(&buffer, chara, &buffer_length);
 			fmt_cpy++;
 /*			printf("breaks somewhere here\n");*/
 		}
 	}
 	printf("length is %i should be %i \n_____\n",buffer_length, _strlen(buffer));
-	write(1, buffer, buffer_length);
+	if (buffer_length % 1024 != 0)
+		write(1, buffer, buffer_length);
 	printf("\ni just tried to write\nbuffer begin - index is %s\n",buffer);
 	printf("printing just buffer: %s\n", (buffer));
 	free(buffer);
