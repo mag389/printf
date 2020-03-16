@@ -1,6 +1,31 @@
 #include "holberton.h"
 
 /**
+ * apply_zero - apply zero formatting
+ * Description: Applies '0' formatting to a given string.
+ * @text: String to be formatted
+ * Return: Formatted string
+ */
+char *apply_zero(char *text)
+{
+	int index = 0;
+	while (*(text + index))
+	{
+		if (*(text + index) != ' ')
+			break;
+		*(text + index) = '0';
+		index++;
+	}
+	if (*(text + index) == '-')
+	{
+		*(text + index) = '0';
+		*text = '-';
+	}
+	return (text);
+}
+
+
+/**
  * apply_hash - apply '#' formatting
  * Description: Puts a leading 0 in front of octal conversions if the first
  *              digit isn't already a 0. Puts a leading 0x for x conversions,
@@ -44,12 +69,12 @@ char *apply_hash(char *text, char type)
 
 /**
  * apply_sign - apply sign
- * Description: 
- * @text:
- * @flags:
- * Return:
+ * Description: Applies either + or ' ' formatting to a string.
+ * @text: String to be formatted
+ * @flags: String of formatting flags present in parent formatting string.
+ * Return: Formatted text
  */
-char *apply_signt(char *text, char *flags)
+char *apply_sign(char *text, char *flags)
 {
 	char *sign_text;
 	int index;
@@ -58,9 +83,11 @@ char *apply_signt(char *text, char *flags)
 	flag = (*(flags + 2) == '+' ? '+' : ' ');
 	if (*text == '-')
 		return (text);
-	if (*text == ' ');
+	if (*text == ' ')
 	{
-		*text = '+';
+		while (*(text + index) == ' ')
+			index++;
+		*(text + index - 1) = '+';
 		return (text);
 	}
 	if (*text == '0')
