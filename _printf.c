@@ -58,21 +58,26 @@ int _printf(const char *format, ...)
 				apply_flags()
 
 */				buffer_length += save_to_buffer(&buffer, argtext);
+				free(argtext);
 				fmt_cpy++;
 				printf("the arglength in: %i\n",_strlen(argtext));
 			}
 		}
 		else
 		{
+/*			printf("gets to chara (%s) part \n", chara);*/
 			chara[0] = *fmt_cpy;
+/*			printf("the chara is %s the buffer %s\n", chara, buffer);*/
 			buffer_length += save_to_buffer(&buffer, chara);
 			fmt_cpy++;
+/*			printf("breaks somewhere here\n");*/
 		}
 	}
 	printf("length is %i should be %i \n_____\n",buffer_length, _strlen(buffer));
 	write(1, buffer, buffer_length);
 	printf("\ni just tried to write\nbuffer begin - index is %s\n",buffer);
 	printf("printing just buffer: %s\n", (buffer));
+	free(buffer);
 	return(buffer_length);
 /*	write buffer to output
 	free(everything allocated)

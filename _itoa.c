@@ -42,6 +42,8 @@ void *_itoa(char length, va_list list)
 	}
 	array[i] = '\0';
 	newarray = _calloc(i + 1, 1, '\0');
+	if (newarray == NULL)
+		exit(3);
 	for (; i >= 0; i--)
 		newarray[i] = array[i];
 	free(array);
@@ -76,14 +78,15 @@ void *_utoa(char length, va_list list)
 		if (numcpy == 0)
 			break;
 	}
+/*	printf("digits is %d\n", digits);*/
 	for (digits--; digits >= 0; digits--)
 	{
-		printf("%s\n", array);
 		array[digits] = '0' + number % 10;
 		number /= 10;
 		i++;
 	}
 	array[i] = '\0';
+/*	printf("%s and the i %i and the d %d\n",array, i, digits); */
 	newarray = _calloc(i + 1, 1, '\0');
 	if (newarray == NULL)
 		exit(3);

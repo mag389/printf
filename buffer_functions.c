@@ -60,6 +60,6 @@ int save_to_buffer(char **buffer, char *f_text)
 		*(*(buffer) + old_buffer_len + index) = *(f_text + index);
 	*(*(buffer) + old_buffer_len + index) = '\0';
 
-	free(f_text);
+/*	free(f_text);*/
 	return (f_text_len);
 }
