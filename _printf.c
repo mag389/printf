@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 
 	fmt_cpy = _cstrdup(format);
 	printf("----------------------\n%s\n",fmt_cpy);
-	buffer = malloc(500);
+	buffer = _calloc(1,1,0);
 	chara = _calloc(2,1,'\0');
 	if (buffer == NULL || chara == NULL)
 		exit(1);
