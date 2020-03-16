@@ -51,7 +51,7 @@ char *apply_space(char *text);
 typedef struct formatting
 {
 	char *flags;
-	int with, prec;
+	int width, prec;
 	char length, type;
 } form_t;
 
