@@ -44,7 +44,7 @@ char *apply_hash(char *text, char type)
 
 /**
  * apply_sign - apply sign
- * Description:
+ * Description: 
  * @text:
  * @flags:
  * Return:
@@ -63,5 +63,18 @@ char *apply_signt(char *text, char *flags)
 		*text = '+';
 		return (text);
 	}
-	
+	if (*text == '0')
+	{
+		*text = flag;
+		return (text);
+	}
+
+	sign_text = _calloc(_strlen(text) + 2, 1, '\0');
+	if (!sign_text)
+		exit (1000);
+	*sign_text = flag;
+	for (index = 0; *(text + index); index++)
+		*(sign_text + index + 1) = *(text + index);
+	free(text);
+	return (sign_text);
 }
