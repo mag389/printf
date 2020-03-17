@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	fmt_cpy = _cstrdup(format);
 	fmt_len = _strlen(fmt_cpy);
-	buffer = malloc(1014);
+	buffer = malloc(1024);
 	chara = _calloc(2, 1, '\0');
 	if (buffer == NULL || chara == NULL)
 		exit(1);
@@ -37,7 +37,19 @@ int _printf(const char *format, ...)
 				format_s = get_formatting(&fmt_cpy, args);
 				funct = (*func)(format_s->type);
 				argtext = funct(format_s->length, args);
+				if (!argtext)
+				{
+					_free(4, buffer, format_s->flags,
+					      format_s, chara);
+					return (-1);
+				}
 				argtext = apply_formatting(argtext, format_s);
+				if (!argtext)
+				{
+					_free(4, buffer, format_s->flags,
+					      format_s, chara);
+					return (-1);
+				}
 			        save_to_buffer(&buffer, argtext, &buffer_len);
 				_free(3, argtext, format_s->flags, format_s);
 			}
