@@ -1,6 +1,50 @@
 #include "holberton.h"
 #include <unistd.h>
 /**
+ * check_val - check format validity
+ * Description: Checks the format string for invalid formats.
+ * @fmt: Format string
+ * @args: List of arguments (Needed for get precision)
+ * Return: 1 if valid, 0 if not.
+ */
+int check_val(char *fmt, va_list args)
+{
+	form_t *format_s;
+	int fmt_len = _strlen(fmt);
+	int new_len;
+	while (*fmt)
+	{
+		if (*fmt == '%')
+		{
+			if (!*(fmt + 1))
+			{
+				free(fmt - fmt_len + 1);
+				return (0);
+			}
+			if (*(fmt + 1) == '%')
+				fmt += 2;
+			else
+			{
+				format_s = get_formatting(&fmt, args);
+				va_arg(args, void);
+				if (!format_s)
+				{
+					new_len = _strlen(fmt);
+					free(fmt - (fmt_len - new_len));
+					return (0);
+				}
+				free(format_s->flags);
+				free(format_s);
+			}
+		}
+		else
+			fmt++;
+	}
+	free(fmt - fmt_len);
+	return (1);
+}
+
+/**
  * _free - free pointers
  * Description: Frees all pointers given to it
  * @n: Number of pointers to free

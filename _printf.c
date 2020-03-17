@@ -15,14 +15,17 @@ int _printf(const char *format, ...)
 
 	if (!format)
 		return (-1);
+	va_start(args, format);
+	va_copy(args_cpy, args);
+	if (check_val(_cstrdup(format), args_cpy) == 0)
+		return (-1);
 	fmt_cpy = _cstrdup(format);
 	fmt_len = _strlen(fmt_cpy);
 	buffer = malloc(1024);
 	chara = _calloc(2, 1, '\0');
 	if (buffer == NULL || chara == NULL)
 		exit(1);
-	va_start(args, format);
-	va_copy(args_cpy, args);
+
 	while (*fmt_cpy)
 	{
 		if (*fmt_cpy == '%')

@@ -32,6 +32,7 @@ char *_cstrdup(const char *);
 /* Functions inside buffer_functions.c */
 void save_to_buffer(char **buffer, char *f_text, int *buffer_length);
 void _free(int n, ...);
+int check_val(char *fmt, va_list args);
 
 /* Functions inside apply_functions.c */
 char *apply_formatting(char *text, form_t *format);
