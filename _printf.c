@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				format_s = get_formatting(&fmt_cpy, args_cpy);
+				format_s = get_formatting(&fmt_cpy, args);
 				funct = (*func)(format_s->type);
 				argtext = funct(format_s->length, args);
 				argtext = apply_formatting(argtext, format_s);
