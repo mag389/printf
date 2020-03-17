@@ -17,7 +17,7 @@ form_t *get_formatting(char **fmt, va_list args)
 {
 	form_t *formats;
 
-	formats = malloc(sizeof(form_t));
+	formats = malloc(24);
 	if (!formats)
 		exit(1000);
 

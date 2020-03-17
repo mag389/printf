@@ -1,5 +1,19 @@
 #include "holberton.h"
-
+/**
+ * apply_formatting - apply formatting
+ * Description: Applies all specified formatting to a string of text.
+ * @text: String to be formatted
+ * @format: Struct containing formatting information
+ * Return: Formatted text
+ */
+char *apply_formatting(char *text, form_t *format)
+{
+	text = apply_width(text, format->width);
+	if (format->prec >= 0)
+		text = apply_prec(text, format->prec);
+	text = apply_flags(text, format->flags, format->type);
+	return (text);
+}
 /**
  * apply_prec - apply precision
  * Description: Applies precision, if specified, to the text.
