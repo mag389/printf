@@ -1,43 +1,18 @@
 #include "holberton.h"
 #include <unistd.h>
 /**
- * extend_buffer - extend buffer
- * Description: Extends the allocated space of the buffer by reallocating
- *              a new space equal to the current size of the buffer and
- *              the amount to extend it by, and copies the contents of the
- *              buffer into the new space.
- *
- * @buffer: Pointer to buffer to extend.
- * @extension: Number of bytes by whuch to extend the buffer.
- * Return: Pointer to new buffer space.
+ * _free - free pointers
+ * Description: Frees all pointers given to it
+ * @n: Number of pointers to free
  */
-char *extend_buffer(char *buffer, int extension)
+void _free(int n, ...)
 {
-	int buffer_size, new_size;
-	char *new_buffer;
+	va_list args;
 
-	buffer_size = _strlen(buffer) + 1;
-	new_size = buffer_size + extension;
-	new_buffer = _realloc(buffer, buffer_size, new_size);
-	return (new_buffer);
+	va_start(args, n);
+	while(n--)
+		free(va_arg(args, void *));
 }
-
-/**
- * init_buffer - initialize buffer
- * Description: Callocs a single null byte to start the buffer with. Mainly
- *              just to save lines in _printf.
- * Return: Pointer to allocated buffer.
- */
-char *init_buffer(void)
-{
-	char *buffer;
-
-	buffer = malloc(1024);
-	if (!buffer)
-		exit(1000);
-	return (buffer);
-}
-
 /**
  * save_to_buffer - save to buffer
  * Desciption: Appends a string to the end of the local buffer.
@@ -52,7 +27,7 @@ void save_to_buffer(char **buffer, char *f_text, int *buffer_index)
 
 	for (index = 0; *(f_text + index); index++, (*buffer_index)++)
 	{
-		if (*buffer_index % 1024 == 0)
+		if (*buffer_index % 1024 == 0 && *buffer_index != 0)
 			write(1, *buffer, 1024);
 		*(*buffer + (*buffer_index % 1024)) = *(f_text + index);
 	}

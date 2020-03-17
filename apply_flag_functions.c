@@ -31,6 +31,7 @@ char *apply_left_align(char *text)
 char *apply_zero(char *text)
 {
 	int index = 0;
+
 	while (*(text + index))
 	{
 		if (*(text + index) != ' ')
@@ -59,34 +60,42 @@ char *apply_zero(char *text)
 char *apply_hash(char *text, char type)
 {
 	char *hash_text;
-	int index;
+	int index, distance, needed;
 
+	needed = (type == 'o' ? 1 : 2);
+	for (distance = 0; *(text + distance); distance++)
+	{
+		if (*(text + distance) != ' ')
+			break;
+	}
+	if (distance - needed >= 0)
+	{
+		if (type == 'o')
+			*(text + distance - 1) = '0';
+		else
+		{
+			*(text + distance - 1) = (type == 'x' ? 'x' : 'X');
+			*(text + distance - 2) = '0';
+		}
+		return (text);
+	}
+	needed = (distance - needed) * -1;
+	hash_text = _calloc(_strlen(text) + needed + 1, 1, 0);
 	if (type == 'o')
 	{
-		if (*text == '0')
-			return (text);
-
-		hash_text = _calloc(_strlen(text) + 2, 1, '\0');
-		if (!hash_text)
-			return (NULL);
 		*hash_text = '0';
 		for (index = 0; *(text + index); index++)
 			*(hash_text + index + 1) = *(text + index);
-		free(text);
-		return (hash_text);
 	}
 	else
 	{
-		hash_text = _calloc(_strlen(text) + 3, 1, '\0');
-		if (!hash_text)
-			exit(1000);
 		*hash_text = '0';
 		*(hash_text + 1) = (type == 'x' ? 'x' : 'X');
 		for (index = 0; *(text + index); index++)
 			*(hash_text + index + 2) = *(text + index);
-		free(text);
-		return (hash_text);
 	}
+	free(text);
+	return (hash_text);
 }
 
 /**
@@ -107,6 +116,7 @@ char *apply_sign(char *text, char *flags)
 		return (text);
 	if (*text == ' ')
 	{
+		index = 0;
 		while (*(text + index) == ' ')
 			index++;
 		*(text + index - 1) = '+';
@@ -120,7 +130,7 @@ char *apply_sign(char *text, char *flags)
 
 	sign_text = _calloc(_strlen(text) + 2, 1, '\0');
 	if (!sign_text)
-		exit (1000);
+		exit(1000);
 	*sign_text = flag;
 	for (index = 0; *(text + index); index++)
 		*(sign_text + index + 1) = *(text + index);
