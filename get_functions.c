@@ -136,10 +136,11 @@ char get_type(char **fmt)
  */
 int get_prec(char **fmt, va_list args)
 {
-	int prec = 0;
+	int prec = -1;
 
 	if (**fmt == '.')
 	{
+		prec = 0;
 		(*fmt)++;
 		while (**fmt)
 		{
