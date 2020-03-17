@@ -52,7 +52,7 @@ void save_to_buffer(char **buffer, char *f_text, int *buffer_index)
 
 	for (index = 0; *(f_text + index); index++, (*buffer_index)++)
 	{
-		if (*buffer_index % 1024 == 0)
+		if (*buffer_index % 1024 == 0 && *buffer_index != 0)
 			write(1, *buffer, 1024);
 		*(*buffer + (*buffer_index % 1024)) = *(f_text + index);
 	}
