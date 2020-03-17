@@ -19,13 +19,23 @@ form_t *get_formatting(char **fmt, va_list args)
 
 	formats = malloc(24);
 	if (!formats)
-		exit(1000);
+		return (NULL);
 
 	formats->flags = get_flags(fmt);
+	if (!formats->flags)
+	{
+		free(formats);
+		return (NULL);
+	}
 	formats->width = get_width(fmt);
 	formats->prec = get_prec(fmt, args);
 	formats->length = get_len(fmt);
 	formats->type = get_type(fmt);
-
+	if(formats->type == 0)
+	{
+		free(formats->flags);
+		free(formats);
+		return (NULL);
+	}
 	return (formats);
 }

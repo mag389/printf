@@ -9,6 +9,8 @@ char *apply_left_align(char *text)
 {
 	int index, adjust;
 
+	if (!text)
+		return (NULL);
 	for (adjust = 0; *(text + adjust); adjust++)
 	{
 		if (*(text + adjust) != ' ')
@@ -32,6 +34,8 @@ char *apply_zero(char *text)
 {
 	int index = 0;
 
+	if (!text)
+		return (NULL);
 	while (*(text + index))
 	{
 		if (*(text + index) != ' ')
@@ -62,6 +66,8 @@ char *apply_hash(char *text, char type)
 	char *hash_text;
 	int index, distance, needed;
 
+	if (!text)
+		return (NULL);
 	needed = (type == 'o' ? 1 : 2);
 	for (distance = 0; *(text + distance); distance++)
 	{
@@ -81,6 +87,8 @@ char *apply_hash(char *text, char type)
 	}
 	needed = (distance - needed) * -1;
 	hash_text = _calloc(_strlen(text) + needed + 1, 1, 0);
+	if (!hash_text)
+		return (NULL);
 	if (type == 'o')
 	{
 		*hash_text = '0';
@@ -130,7 +138,7 @@ char *apply_sign(char *text, char *flags)
 
 	sign_text = _calloc(_strlen(text) + 2, 1, '\0');
 	if (!sign_text)
-		exit(1000);
+		return(NULL);
 	*sign_text = flag;
 	for (index = 0; *(text + index); index++)
 		*(sign_text + index + 1) = *(text + index);
