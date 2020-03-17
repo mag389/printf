@@ -1,0 +1,111 @@
+.TH man 3 "17 March 2020" "MG-KS" "_printf man page"
+.SH NAME
+.B _printf
+- formatted output conversion
+.SH LIBRARY
+not a part of any library
+.SH SYNOPSIS
+.I int
+_printf(
+.Iconst char * format, ...
+);
+.SH DESCRIPTION
+the _printf() function produces output according to a 
+.I format
+as described below.  _printf() writes output to the standard output stream
+stdout.  
+.PP
+This function writes the output under the control of a format string that specifies how subsequent arguments are converted for ouput.
+.PP
+This function returns the number of characters printed (not including any '\0' used to terminate a string) or a negative value if an output error occurs.
+.PP
+The format string is composed of zero or more directives: ordinary characters should be
+ printed as they appear in the given format string, if a format specifier appears zero
+ or more arguments are taken from the variadic input and those arguments are printed with additional 
+format specifications taken into account.  Format specifiers are introduced by the % character and 
+end with a type specifier. Between the % and type specifier there may be zero or more flags, a minimum field width, a minimum precision and a length specifier all of which are optional.
+.PP
+The type specifier denotes the type of the incoming argument, if the argument type does not match the argument is type promoted and the output may be incorrect.
+.SS
+.IR Flags 
+There are four flag options #, 0, -, +, and ' ' (space). 
+.TP
+.BR #
+is for displaying octal and hexadecimal base numbers.  Octal values are displayed with a leading 0, and hex numbers are displayed with a leading 0x (or 0X for hex numbers using capital numbers.)
+.TP
+.BR 0
+ denotes that the number displayed shold be padded on the left with zeroes rather than blank spaces.
+.TP
+.BR -
+ the - symbol indicates that the argument string should be left adjusted instead of the default right.
+the - overrides 0 if both are used
+.TP
+.BR +
+the plus is used to place a sign before a number when dealing with signed numbers, instead of the default where a sign is only placed for negative numbers.  + overrides ' ' if both are used
+.TP
+.BR ' '
+(space) a space places a blank space before positive numbers when dealing with signed numbers so they are the same length if negative. 
+.BR
+.SS
+.IR Width
+The width is an optional decimal number in string format tha specifies minimum number of characters to use for that field.  If the converted argument has more characters than width it will do nothing. If the converted argument is shorter than width it will be padded to be the size of width (padding with spaces to the left of the string by default, changes are optional with flags)
+.BR
+.SS
+.IR Precision
+The precision is an optional decimal number in string format that follows a '.' symbol and specifies the minimum field width for integer numbers.  For integer numbers it works in the same way as width. _printf() does not handle non integer numbers.  Optionally, instead of a leading period '.' precision can be specified with an asterisk '*' when this is used it draws the precision value from the next agrument value given to the _printf() function.
+.BR
+.SS
+.IR Length
+The length field determines the size of variable to be used for integer conversion when those type specifiers are used.  
+.TP
+.BR 'l'
+denotes long.  For integer arguments (type specifier i, d) uses type long int. For unsigned integer arguments (type specifier o, u, x, X) it uses type unsigned long int.
+.TP
+.BR 'h'
+denotes half. For integer arguments (type specifier i, d) uses type short int. For unsigned integer argumen
+ts (type specifier o, u, x, X) it uses type unsigned short int.
+.SS
+.I Type Conversion Specifiers
+The characters that specifies what type of argument is being formatted and printed.
+.TP
+.BR d,i
+Integer arguments are converted and printed as decimal numbers. Default precision/width is 1. If precision 0 is given and the argument is zero prints nothing.
+.TP
+.BR o,u,x,X
+Unsigned integer arguments are converted and printed. specifier o converts the unsigned int to octal. u converts unsigned int to decimal. x converts unsigned int to hexadecimal with additional characters abcdef. X converts unsigned int to hexadecimal but using additional characters ABCDEF. Default precision is 1, but if precision is explicitly given as zero and the argument is zero prints nothing for that argument.
+.TP
+.BR b
+Unsigned integer arguments are converted to binary. Does not take into account length specifier. default precision is 1.
+.TP
+.BR s
+Char * (string) arguments. Takes the type char * and prints the string up to the null byte(does not print null byte).  Special characters are printed as what they represent, for instance '\n' produces a line break.
+.TP
+.BR S
+Char * (string) arguments. Takes the type char * and prints the string up to the null byte (does not print null byte). Special characters are printed by a slash followed by their ascii representation for instance '\n' is printed as "\x0A"
+.TP
+.BR r
+Char * (string) arguments. Takes the type char * and prints the reversed string arguments (does not print null byte).  For instance given the argument "michael" with specifier %r it would print "leachim".
+.TP
+.BR R
+Char * (string) arguments. Takes type char * and prints the rot13 encrypted version of that arguments. (does not print null byte. For instance given argument "kevin" with specifier %R it owuld print "xriva".
+.TP
+.BR c
+Char arguments are printed as the character.
+.TP
+.BR p
+void * pointer argument.  The hexadecimal representation of the value of the pointer argument is printed out.  The argument output is preceded by '0x' so if the pointer is to memory address 1 is would print "0x1"
+.SH EXAMPLES
+.TP 
+to print an integer number
+_printf("the number is: %i", 1234); would produce output "the number is: 1234"
+.TP 
+to print a string
+_printf("My school is: %s", "Holberton");
+ would produce the output "My school is: Holberton"
+.TP 
+to print with additional fields
+_printf("a hex number padded to width 6 with zeroes: %06x", 12);
+would produce the output: "a hexnumber padded to width 6 with zeroes: 000012");
+
+.SH SEE ALSO
+.I printf()
