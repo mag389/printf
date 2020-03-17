@@ -13,7 +13,7 @@ void *_stoa(char len, va_list list)
 	(void)len;
 	str = _strdup(va_arg(list, char *));
 	if (str == NULL)
-		exit(2);
+		return (NULL);
 	return (str);
 }
 /**
@@ -30,7 +30,7 @@ void *_rtoa(char len, va_list list)
 	(void)len;
 	str = _strdup(va_arg(list, char *));
 	if (str == NULL)
-		exit(2);
+		return (NULL);
 	length = _strlen(str);
 	for (i = 0; i <= length / 2; i++)
 	{
@@ -56,7 +56,7 @@ void *_bigrtoa(char len, va_list list)
 	(void)len;
 	str = _strdup(va_arg(list, char *));
 	if (str == NULL)
-		exit(2);
+		return (NULL);
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		for (j = 0; j < 52; j++)
@@ -85,7 +85,7 @@ void *_bigstoa(char len, va_list list)
 	(void)len;
 	str = _strdup(va_arg(list, char *));
 	if (str == NULL)
-		exit(2);
+		return (NULL);
 	length = _strlen(str);
 	newstr = _calloc(4 * length, 1, 'n');
 	if (newstr == NULL)
@@ -127,7 +127,7 @@ void *_ctoa(char len, va_list list)
 	(void)len;
 	str = _calloc(2, 1, '\0');
 	if (str == NULL)
-		exit(3);
+		return (NULL);
 	str[0] = va_arg(list, int);
 	return (str);
 }
