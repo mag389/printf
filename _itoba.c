@@ -34,6 +34,8 @@ void *_itoba(char length, va_list list)
 	}
 	array[i] = '\0';
 	newarray = _calloc(i + 1, 1, '\0');
+	if (newarray == NULL)
+		return (NULL);
 	for (; i >= 0; i--)
 		newarray[i] = array[i];
 	free(array);
