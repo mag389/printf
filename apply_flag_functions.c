@@ -1,5 +1,27 @@
 #include "holberton.h"
+/**
+ * apply_left_align - apply left justification
+ * Description: Converts text to left justification instead of default right
+ * @text: String to format
+ * Return: Formatted text
+ */
+char *apply_left_align(char *text)
+{
+	int index, adjust;
 
+	for (adjust = 0; *(text + adjust); adjust++)
+	{
+		if (*(text + adjust) != ' ')
+			break;
+	}
+	if (adjust == _strlen(text))
+		return (text);
+	for (index = adjust; *(text + index); index++)
+		*(text + index - adjust) = *(text + index);
+	for (index--; adjust > 0 ; index--, adjust--)
+		*(text + index) = ' ';
+	return (text);
+}
 /**
  * apply_zero - apply zero formatting
  * Description: Applies '0' formatting to a given string.
@@ -46,7 +68,7 @@ char *apply_hash(char *text, char type)
 
 		hash_text = _calloc(_strlen(text) + 2, 1, '\0');
 		if (!hash_text)
-			exit(1000);
+			return (NULL);
 		*hash_text = '0';
 		for (index = 0; *(text + index); index++)
 			*(hash_text + index + 1) = *(text + index);

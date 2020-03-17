@@ -79,19 +79,16 @@ int match(char c, char *str)
 	}
 	return (0);
 }
-/*
+
 char *apply_flags(char *text, char *flags, char type)
 {
-	if (*flags == '#' && match(type, "oxX"))
-		text = apply_hash(text, type);
 	if (*(flags + 1) == '0' && match(type, "diuoxX"))
 		text = apply_zero(text);
-	if (*(flags + 2) == '+' && match(type, "di"))
-		text = apply_sign(text);
+	if (*flags == '#' && match(type, "oxX"))
+		text = apply_hash(text, type);
+	if ((*(flags + 2) == '+' || *(flags + 4) == ' ') && match(type, "di"))
+		text = apply_sign(text, flags);
 	if (*(flags + 3) == '-')
 		text = apply_left_align(text);
-	if (*(flags + 4) == ' ' && match(type, "di"))
-		text = apply_space(text);
 	return (text);
 }
-*/
