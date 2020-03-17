@@ -116,6 +116,7 @@ char *apply_sign(char *text, char *flags)
 		return (text);
 	if (*text == ' ')
 	{
+		index = 0;
 		while (*(text + index) == ' ')
 			index++;
 		*(text + index - 1) = '+';
