@@ -52,10 +52,15 @@ char *get_flags(char **fmt)
  * Return: The specified width in the formatting string. 0 if no width found.
  */
 
-int get_width(char **fmt)
+int get_width(char **fmt, va_list args)
 {
 	int width = 0;
 
+	if (**fmt == '*')
+	{
+		(*fmt)++;
+		return (va_arg(args, int));
+	}
 	while (**fmt)
 	{
 		if (**fmt >= '0' && **fmt <= '9')
