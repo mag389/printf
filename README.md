@@ -9,7 +9,7 @@ Within this repository are all the files necessary for the function to work, eac
 \_printf("hello");
 >hello
 
-\_printf("here is a number: %i", 1234);
+'\_printf("here is a number: %i", 1234);'
 >here is a number: 1234
 
 \_printf("here is a string: %s and a character: %c", "hi", 'c');
