@@ -32,7 +32,7 @@ void *_rtoa(char len, va_list list)
 	if (str == NULL)
 		return (NULL);
 	length = _strlen(str);
-	for (i = 0; i <= length / 2; i++)
+	for (i = 0; i < length / 2; i++)
 	{
 		temp = str[i];
 		str[i] = str[length - 1 - i];
